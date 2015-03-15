@@ -87,6 +87,7 @@ func (obj *YObject) Add(key string, value interface{}) error {
 			obj.buffer.WriteByte(',')
 		}
 		obj.buffer.WriteString(key)
+		obj.buffer.WriteByte(':')
 		obj.buffer.WriteString(strconv.FormatFloat(value.(float64), 'f', 6, 64))
 		info.count += 1
 	} else if vType == reflect.Float32 {
@@ -94,6 +95,7 @@ func (obj *YObject) Add(key string, value interface{}) error {
 			obj.buffer.WriteByte(',')
 		}
 		obj.buffer.WriteString(key)
+		obj.buffer.WriteByte(':')
 		obj.buffer.WriteString(strconv.FormatFloat(value.(float64), 'f', 6, 32))
 		info.count += 1
 	} else if vType == reflect.Uint {
@@ -101,6 +103,7 @@ func (obj *YObject) Add(key string, value interface{}) error {
 			obj.buffer.WriteByte(',')
 		}
 		obj.buffer.WriteString(key)
+		obj.buffer.WriteByte(':')
 		obj.buffer.WriteString(strconv.FormatUint(value.(uint64), 10))
 		info.count += 1
 	} else if vType == reflect.Int {
@@ -108,6 +111,7 @@ func (obj *YObject) Add(key string, value interface{}) error {
 			obj.buffer.WriteByte(',')
 		}
 		obj.buffer.WriteString(key)
+		obj.buffer.WriteByte(':')
 		obj.buffer.WriteString(strconv.Itoa(value.(int)))
 		info.count += 1
 	}
