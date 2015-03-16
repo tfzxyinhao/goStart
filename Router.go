@@ -45,7 +45,7 @@ func (r *Router) Register(path string, cb func(c *context.Context)) {
 			dir := paths[i]
 			sub := tmp.SubRouter[dir]
 			if sub == nil {
-				newSub := &Router{SubRouter: make(map[string]*Router), Handler: make(map[string]func(c *context.Context))}
+				newSub := &Router{SubRouter: make(map[string]*Router), Handler: nil}
 				tmp.SubRouter[dir] = newSub
 				tmp = newSub
 				log.Println(i, dir, newSub, &newSub, &tmp)
@@ -55,6 +55,9 @@ func (r *Router) Register(path string, cb func(c *context.Context)) {
 		}
 
 		last := paths[count-1]
+		if tmp.Handler == nil {
+			tmp.Handler = make(map[string]func(c *context.Context))
+		}
 		tmp.Handler[last] = cb
 	}
 }

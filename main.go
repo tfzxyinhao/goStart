@@ -18,7 +18,7 @@ const (
 )
 
 func init() {
-	flag.Set("log_dir", "./")
+	flag.Set("log_dir", "./logs")
 	flag.Set("stderrthreshold", "INFO")
 }
 

@@ -30,6 +30,6 @@ func (h *MyHandler) AddRouter(path string, cb func(c *context.Context)) {
 
 func NewMyHanlder() *MyHandler {
 	handler := &MyHandler{RouterMatch: &Router{Handler: make(map[string]func(c *context.Context)), SubRouter: make(map[string]*Router)}, Db: &Database{}}
-	handler.Db.Init()
+	//handler.Db.Init()
 	return handler
 }
