@@ -12,6 +12,12 @@ Feature：
 > * base route like express 3.x
 > * base json serialize
 
+Sample benchmark test
+ #router
+PASS
+BenchmarkRouter	 3000000	       548 ns/op
+ok  	proj	2.240s
+
 to do：
 
 > * form parse wrap

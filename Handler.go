@@ -13,8 +13,8 @@ type MyHandler struct {
 
 func (h *MyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	log.Println(r.URL.Path)
-	handler := h.RouterMatch.Match(r.URL.Path)
-	c := &context.Context{Req: r, Res: w}
+	handler, param := h.RouterMatch.Match(r.URL.Path)
+	c := &context.Context{Params: param, Req: r, Res: w}
 
 	if handler != nil {
 		handler(c)

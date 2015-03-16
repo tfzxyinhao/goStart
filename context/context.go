@@ -6,8 +6,9 @@ import (
 )
 
 type Context struct {
-	Req *http.Request       "request"
-	Res http.ResponseWriter "response"
+	Params map[string]string
+	Req    *http.Request       "request"
+	Res    http.ResponseWriter "response"
 }
 
 func (c *Context) Json(data interface{}) error {
