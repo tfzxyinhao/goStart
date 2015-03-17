@@ -29,7 +29,16 @@ so i wrote these basic code to providing router that functionality similar to ex
 ```go
 	handler := NewMyHanlder()
 	handler.AddRouter("/user/login", func(c *context.Context) {
-		c.Json("{event:Login}")
+		j := NewJson()
+	    j.BeginObject("user")
+		j.BeginArray("products")
+		j.BeginObject("")
+		j.Add("id", "123456")
+		j.Add("id", 3.1415926)
+		j.EndObject()
+		j.EndArray()
+		j.EndObject()
+		c.Json(j.ToString())
 	})
 	handler.Start(":80")
 ```

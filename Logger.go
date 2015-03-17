@@ -40,58 +40,52 @@ func NewLogger(size int, path string) *Logger {
 	return logger
 }
 
-func (logger *Logger) Save(index uint) {
+func (logger *Logger) savefile(index uint) {
+	now := time.Now()
+	y, m, d := now.Date()
+	filename := fmt.Sprintf("%s_%02d%02d%02d_%02d%02d.log", logger.prix[index], y, m, d, now.Hour(), now.Second())
+	file := filepath.Join(logger.path, filename)
+	ioutil.WriteFile(file, logger.buffer[index].Bytes(), os.ModePerm)
+	logger.buffer[index].Reset()
+	fmt.Println(filename, file, logger.buffer[index].Len())
+}
+
+func (logger *Logger) save(index uint) {
 	if index < 4 && logger.buffer[index].Len() >= logger.limit {
-		now := time.Now()
-		y, m, d := now.Date()
-		filename := fmt.Sprintf("%s_%2d%2d%2d_%2d%2d.log", logger.prix[index], y, m, d, now.Hour(), now.Second())
-		file := filepath.Join(logger.path, filename)
-		ioutil.WriteFile(file, logger.buffer[index].Bytes(), os.ModePerm)
-		logger.buffer[index].Reset()
-		fmt.Println(filename, file, logger.buffer[index].Len())
+		logger.savefile(index)
 	}
 }
 
+func (logger *Logger) write(index uint, args ...interface{}) {
+	logger.buffer[index].WriteString(time.Now().Format(time.RFC3339))
+	logger.buffer[index].WriteByte(' ')
+	logger.buffer[index].WriteString(fmt.Sprint(args...))
+	logger.buffer[index].WriteString("\n")
+	if logger.console {
+		fmt.Println(args...)
+	}
+	logger.save(index)
+}
+
 func (logger *Logger) shutdown() {
-	for index := 0; index < 4; index++ {
-		now := time.Now()
-		y, m, d := now.Date()
-		filename := fmt.Sprintf("%s_%2d%2d%2d_%2d%2d.log", logger.prix[index], y, m, d, now.Hour(), now.Second())
-		file := filepath.Join(logger.path, filename)
-		ioutil.WriteFile(file, logger.buffer[index].Bytes(), os.ModePerm)
-		logger.buffer[index].Reset()
-		fmt.Println(filename, file, logger.buffer[index].Len())
+	var index uint = 0
+	for index = 0; index < 4; index++ {
+		logger.savefile(index)
 	}
 }
 
 func (logger *Logger) Info(args ...interface{}) {
-	logger.buffer[INFO].WriteString(fmt.Sprint(args))
-	if logger.console {
-		fmt.Println(args)
-	}
-	logger.Save(INFO)
+	logger.write(INFO, args...)
 }
 
 func (logger *Logger) Warn(args ...interface{}) {
-	logger.buffer[WARN].WriteString(fmt.Sprint(args))
-	if logger.console {
-		fmt.Println(args)
-	}
-	logger.Save(INFO)
+	logger.write(WARN, args...)
 }
 
 func (logger *Logger) Debug(args ...interface{}) {
-	logger.buffer[DEBUG].WriteString(fmt.Sprint(args))
-	if logger.console {
-		fmt.Println(args)
-	}
-	logger.Save(INFO)
+	logger.write(DEBUG, args...)
 }
 
 func (logger *Logger) Error(args ...interface{}) {
-	logger.buffer[ERROR].WriteString(fmt.Sprint(args))
-	if logger.console {
-		fmt.Println(args)
-	}
-	logger.Save(INFO)
+	logger.write(ERROR, args...)
 }
