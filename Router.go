@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"proj/context"
 	"strings"
 )
@@ -26,7 +27,7 @@ func (r *Router) Match(path string) (func(c *context.Context), map[string]string
 		tmp := r
 		param := make(map[string]string)
 		for i := 0; i < count-1; i++ {
-			count := len(r.Param)
+			count := len(tmp.Param)
 			if count > 0 {
 				param[string(tmp.Param[1:count])] = paths[i]
 				sub := tmp.SubRouter[tmp.Param]
@@ -65,7 +66,6 @@ func (r *Router) Register(path string, cb func(c *context.Context)) {
 			r.Param = dir
 		}
 		r.Handler[dir] = cb
-
 	} else {
 		tmp := r
 		for i := 0; i < count-1; i++ {
@@ -93,4 +93,24 @@ func (r *Router) Register(path string, cb func(c *context.Context)) {
 		}
 		tmp.Handler[last] = cb
 	}
+}
+
+func (r *Router) Debug() {
+	fmt.Println("param:", r.Param)
+
+	if len(r.SubRouter) > 0 {
+		fmt.Println("subRouter:")
+		for k := range r.SubRouter {
+			fmt.Println(k, " => ", r.SubRouter[k])
+			r.SubRouter[k].Debug()
+		}
+	}
+
+	if len(r.Handler) > 0 {
+		fmt.Println("Handler:")
+		for k := range r.Handler {
+			fmt.Println(k, " => ", r.SubRouter[k])
+		}
+	}
+
 }

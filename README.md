@@ -1,23 +1,33 @@
 # goStart
-Some base code for make web api
+This is some basic source code of web api,
+you can use this source code for making or customizing your own web api
+
 
 ------
-I am from nodejs,so express was used in my project
-but in golang, i can't comfortable use like gin framework... 
-This code aim to support some router like express 3.x。
+#Why
+As you all know express framework is very popular in nodejs,and it's also very convenience for web developers and
+many developers are using them to build applications.
+now i am moving to golang and i can't find noting similar to nodejs express framework in golang
+althought it has gin,recel framework etc, but i still can't adjust to it.
+so i wrote these basic code to providing router that functionality similar to express 3.x
 
 
-Feature：
+#Feature：
 
 > * base route like express 3.x
+> * url param
 > * base json serialize
+> * some convenient function
 
 Sample benchmark test
- #router
+
+ #Router
+
 PASS
-BenchmarkRouter	 3000000	       548 ns/op
+BenchmarkRouter	 3000000	       946 ns/op
 ok  	proj	2.240s
 
-to do：
+#TODO：
 
 > * form parse wrap
+> * base json deserialization

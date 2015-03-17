@@ -23,17 +23,6 @@ func init() {
 }
 
 func main() {
-	j := NewJson()
-	j.BeginObject("user")
-	j.BeginArray("products")
-	j.BeginObject("")
-	j.Add("id", "123456")
-	j.Add("id", 3.1415926)
-	j.EndObject()
-	j.EndArray()
-	j.EndObject()
-	glog.Infoln(j.ToString())
-	return
 	handler := NewMyHanlder()
 	handler.AddRouter("/user", user.GetProfile)
 	handler.AddRouter("/user/edit", user.SetProfile)
