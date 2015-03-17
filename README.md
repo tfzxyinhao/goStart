@@ -19,7 +19,22 @@ so i wrote these basic code to providing router that functionality similar to ex
 > * base json serialize
 > * some convenient function
 
-Sample benchmark test
+#TODO：
+
+> * form parse wrap
+> * base json deserialization
+
+#Usage
+
+```go
+	handler := NewMyHanlder()
+	handler.AddRouter("/user/login", func(c *context.Context) {
+		c.Json("{event:Login}")
+	})
+	handler.Start(":80")
+```
+
+#Benchmark
 
  #Router
 
@@ -27,7 +42,3 @@ PASS
 BenchmarkRouter	 3000000	       946 ns/op
 ok  	proj	2.240s
 
-#TODO：
-
-> * form parse wrap
-> * base json deserialization

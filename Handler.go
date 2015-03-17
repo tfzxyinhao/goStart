@@ -36,6 +36,10 @@ func (h *MyHandler) EnableCrossDomain(enable bool) {
 	h.CrossDomain = enable
 }
 
+func (h *MyHandler) Start(addr string) {
+	http.ListenAndServe(addr, h)
+}
+
 func NewMyHanlder() *MyHandler {
 	handler := &MyHandler{RouterMatch: &Router{Handler: make(map[string]func(c *context.Context)), SubRouter: make(map[string]*Router)}, Db: &Database{}, CrossDomain: false}
 	//handler.Db.Init()
