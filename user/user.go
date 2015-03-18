@@ -1,7 +1,7 @@
 package user
 
 import (
-	"proj/context"
+	"github.com/tfzxyinhao/proj/context"
 )
 
 func Register(c *context.Context) {

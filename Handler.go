@@ -1,9 +1,9 @@
 package main
 
 import (
+	"github.com/tfzxyinhao/proj/context"
 	"log"
 	"net/http"
-	"proj/context"
 )
 
 type MyHandler struct {

@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"proj/context"
+	"github.com/tfzxyinhao/proj/context"
 	"strings"
 )
 

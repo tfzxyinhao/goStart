@@ -1,4 +1,5 @@
 [![GoDoc](https://godoc.org/github.com/tfzxyinhao/proj?status.svg)](https://godoc.org/github.com/tfzxyinhao/proj)
+[![Build Status](https://travis-ci.org/tfzxyinhao/proj.svg?branch=master)](https://travis-ci.org/tfzxyinhao/proj)
 
 # goStart
 This is some basic source code of web api,
@@ -49,7 +50,7 @@ so i wrote these basic code to providing router that functionality similar to ex
 
  #Router
 
-PASS
-BenchmarkRouter	 1000000	      1018 ns/op
-ok  	proj	1.067s
+    PASS
+    BenchmarkRouter	 1000000	      1018 ns/op
+    ok  	proj	1.067s
 

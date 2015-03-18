@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"proj/user"
+	"github.com/tfzxyinhao/proj/user"
 	"testing"
 )
 
