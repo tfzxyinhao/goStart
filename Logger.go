@@ -10,6 +10,7 @@ import (
 	"time"
 )
 
+// error level
 const (
 	INFO = iota
 	DEBUG
@@ -17,6 +18,7 @@ const (
 	ERROR
 )
 
+// struct for Logger
 type Logger struct {
 	limit   int
 	path    string
@@ -25,6 +27,7 @@ type Logger struct {
 	prix    []string
 }
 
+// create and init new logger
 func NewLogger(size int, path string) *Logger {
 	c := make(chan os.Signal, 1)
 	logger := &Logger{limit: size, path: path, console: true, prix: []string{"Info", "Debug", "Warn", "Error"}}
@@ -74,18 +77,22 @@ func (logger *Logger) shutdown() {
 	}
 }
 
+// write info level log
 func (logger *Logger) Info(args ...interface{}) {
 	logger.write(INFO, args...)
 }
 
+// write warning level log
 func (logger *Logger) Warn(args ...interface{}) {
 	logger.write(WARN, args...)
 }
 
+// write debug level log
 func (logger *Logger) Debug(args ...interface{}) {
 	logger.write(DEBUG, args...)
 }
 
+// write error level log
 func (logger *Logger) Error(args ...interface{}) {
 	logger.write(ERROR, args...)
 }

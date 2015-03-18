@@ -7,12 +7,14 @@ import (
 	"gopkg.in/mgo.v2"
 )
 
+// all database connection
 type Database struct {
 	Mgo    *mgo.Session  "mongodb"
 	Client *redis.Client "redis"
 	Cache  *groupcache.Group
 }
 
+// init data connection
 func (d *Database) Init() error {
 	sess, err := mgo.Dial("localhost")
 	if err != nil {

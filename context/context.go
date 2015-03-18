@@ -1,3 +1,4 @@
+// this package wrap http request and respone
 package context
 
 import (
@@ -5,6 +6,7 @@ import (
 	"net/http"
 )
 
+// context of http request
 type Context struct {
 	Params map[string]string
 	Req    *http.Request       "request"
