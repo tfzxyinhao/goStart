@@ -8,7 +8,7 @@ import (
 
 func BenchmarkRouter(b *testing.B) {
 	b.StopTimer()
-	handler := NewMyHanlder()
+	handler := NewHanlder()
 	handler.AddRouter("/user", user.GetProfile)
 	handler.AddRouter("/user/edit", user.SetProfile)
 	handler.AddRouter("/user/register", user.Register)
@@ -21,7 +21,7 @@ func BenchmarkRouter(b *testing.B) {
 }
 
 func TestRouter(t *testing.T) {
-	handler := NewMyHanlder()
+	handler := NewHanlder()
 	handler.AddRouter("/user", user.GetProfile)
 	handler.AddRouter("/user/edit", user.SetProfile)
 	handler.AddRouter("/user/register", user.Register)
@@ -32,7 +32,7 @@ func TestRouter(t *testing.T) {
 }
 
 func TestRootRouter(t *testing.T) {
-	handler := NewMyHanlder()
+	handler := NewHanlder()
 	handler.AddRouter("/user", user.GetProfile)
 	handler.AddRouter("/user/edit", user.SetProfile)
 	handler.AddRouter("/user/register", user.Register)
@@ -44,7 +44,7 @@ func TestRootRouter(t *testing.T) {
 }
 
 func TestNodeRouter(t *testing.T) {
-	handler := NewMyHanlder()
+	handler := NewHanlder()
 	handler.AddRouter("/user", user.GetProfile)
 	handler.AddRouter("/user/edit", user.SetProfile)
 	handler.AddRouter("/user/register", user.Register)
@@ -56,7 +56,7 @@ func TestNodeRouter(t *testing.T) {
 }
 
 func TestGetRouter(t *testing.T) {
-	handler := NewMyHanlder()
+	handler := NewHanlder()
 	handler.AddRouter("/user", user.GetProfile)
 	handler.AddRouter("/user/edit", user.SetProfile)
 	handler.AddRouter("/user/register", user.Register)

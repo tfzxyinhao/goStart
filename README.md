@@ -1,3 +1,5 @@
+[![GoDoc](https://godoc.org/github.com/tfzxyinhao/proj?status.svg)](https://godoc.org/github.com/tfzxyinhao/proj)
+
 # goStart
 This is some basic source code of web api,
 you can use this source code for making or customizing your own web api
@@ -27,7 +29,7 @@ so i wrote these basic code to providing router that functionality similar to ex
 #Usage
 
 ```go
-	handler := NewMyHanlder()
+	handler := NewHanlder()
 	handler.AddRouter("/user/login", func(c *context.Context) {
 		j := NewJson()
 	    j.BeginObject("user")
@@ -48,6 +50,6 @@ so i wrote these basic code to providing router that functionality similar to ex
  #Router
 
 PASS
-BenchmarkRouter	 3000000	       946 ns/op
-ok  	proj	2.240s
+BenchmarkRouter	 1000000	      1018 ns/op
+ok  	proj	1.067s
 
