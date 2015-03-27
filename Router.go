@@ -21,6 +21,7 @@ func (r *Router) Match(path string) (func(c *context.Context), map[string]string
 		count := len(r.Param)
 		if count > 0 {
 			param[string(r.Param[1:count])] = paths[0]
+			return r.Handler[r.Param], param
 		}
 		return r.Handler[paths[0]], param
 	} else {
@@ -28,25 +29,29 @@ func (r *Router) Match(path string) (func(c *context.Context), map[string]string
 		param := make(map[string]string)
 		for i := 0; i < count-1; i++ {
 			count := len(tmp.Param)
-			if count > 0 {
-				param[string(tmp.Param[1:count])] = paths[i]
-				sub := tmp.SubRouter[tmp.Param]
-				if sub == nil {
-					return nil, nil
-				}
+			dir := paths[i]
+			sub := tmp.SubRouter[dir]
+			//fmt.Println("check sub:", i, sub)
+			if sub != nil {
 				tmp = sub
 			} else {
-				dir := paths[i]
-				sub := tmp.SubRouter[dir]
-				if sub == nil {
+				if count > 0 {
+					param[string(tmp.Param[1:count])] = paths[i]
+					sub1 := tmp.SubRouter[tmp.Param]
+					//fmt.Println("check sub1:", i, sub1)
+					if sub1 == nil {
+						return nil, nil
+					} else {
+						tmp = sub1
+					}
+				} else {
 					return nil, nil
 				}
-				tmp = sub
 			}
 		}
 
 		last := paths[count-1]
-		count := len(r.Param)
+		count := len(tmp.Param)
 		if count > 0 {
 			param[string(tmp.Param[1:count])] = last
 			return tmp.Handler[tmp.Param], param

@@ -43,6 +43,17 @@ so i wrote these basic code to providing router that functionality similar to ex
 		j.EndObject()
 		c.Json(j.ToString())
 	})
+	
+	handler.AddRouter("/user/:userid/profile", func(c *context.Context) {
+		j := NewJson()
+	    j.BeginObject("user")
+		j.Add("id", c.Params["userid"])
+		j.Add("username", "yourname")
+		j.Add("avatar", "http://git.oschina.net/logo.gif")
+		j.Add("balance", 3.1415926)
+		j.EndObject()
+		c.Json(j.ToString())
+	})
 	handler.Start(":80")
 ```
 
@@ -51,6 +62,6 @@ so i wrote these basic code to providing router that functionality similar to ex
  #Router
 
     PASS
-    BenchmarkRouter	 1000000	      1018 ns/op
-    ok  	proj	1.067s
+    BenchmarkRouter	 1000000	      1013 ns/op
+    ok  	proj	1.064s
 
