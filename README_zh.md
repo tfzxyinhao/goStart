@@ -1,33 +1,30 @@
 [![GoDoc](https://godoc.org/github.com/tfzxyinhao/proj?status.svg)](https://godoc.org/github.com/tfzxyinhao/proj)
 [![Build Status](https://travis-ci.org/tfzxyinhao/proj.svg?branch=master)](https://travis-ci.org/tfzxyinhao/proj)
 
-[简体中文](https://github.com/tfzxyinhao/proj/blob/master/README_zh.md)
-
 # goStart
-This is some basic source code of web api,
-you can use this source code for making or customizing your own web api
+本项目是用于开发web api的基础代码,包含Router,基础的json序列化等
+你可以直接clone一份本代码,然后在此基础上开发你的web api.
 
+#功能：
 
-------
-#Why
-As you all know express framework is very popular in nodejs,and it's also very convenience for web developers and
-many developers are using them to build applications.
-now i am moving to golang and i can't find noting similar to nodejs express framework in golang
-althought it has gin,recel framework etc, but i still can't adjust to it.
-so i wrote these basic code to providing router that functionality similar to express 3.x
-
-
-#Feature：
-
-> * base route like express 3.x
-> * url param
-> * base json serialize
+> * 类似 express 3.x的路由
+> * URL参数
+> * 基础的json序列化
 > * some convenient function
 
-#TODO：
+#为什么:
+从NodeJs转到go,习惯了使用express框架的我在go中找不到类似的框架,虽然有martin和gin
+但是我任然很难习惯,所以就写了一些代码模仿express的功能,让自己尽快的适应go中web api的
+开发工作.
 
-> * form parse wrap
-> * base json deserialization
+#需要做的:
+
+> * Form表达解析(各种MIME)
+> * 更丰富的json序列化支持
+> * Cookies操作
+> * Session支持
+> * 中间件
+> * 脚手架
 
 #Usage
 
@@ -59,9 +56,9 @@ so i wrote these basic code to providing router that functionality similar to ex
 	handler.Start(":80")
 ```
 
-#Benchmark
+#性能测试
 
- #Router
+ #路由
 
     PASS
     BenchmarkRouter	 1000000	      1013 ns/op

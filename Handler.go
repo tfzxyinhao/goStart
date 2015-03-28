@@ -48,6 +48,6 @@ func (h *MyHandler) Start(addr string) {
 // create and init http hander
 func NewHanlder() *MyHandler {
 	handler := &MyHandler{RouterMatch: &Router{Handler: make(map[string]func(c *context.Context)), SubRouter: make(map[string]*Router)}, Db: &Database{}, CrossDomain: false}
-	//handler.Db.Init()
+	handler.Db.Init()
 	return handler
 }
